@@ -14,6 +14,7 @@ function App() {
   // all react functions that starts with the work "use" are called hooks
   // setStep is a setter function that updates the step variable without mutating it.
   const [step, setStep] = useState(1)
+  const [isOpen, setIsOpen] = useState(true)
 
 
   function handlePrevious(){
@@ -34,8 +35,11 @@ function App() {
   
 
   return (
-    
-    <div className="steps">
+    <React.Fragment>
+      {/* the state depends on the previous state */}
+      <button className="close" onClick={() => setIsOpen((open) => !open)}>&times;</button>
+    {
+    isOpen && (<div className="steps">
       <div className="numbers">
         <div className={step >=1 ? "active" : ""}>1</div>
         <div className={step >=2 ? "active" : ""}>2</div>
@@ -50,10 +54,14 @@ function App() {
         <button style={{backgroundColor: "#7950f2 ", color: "#fff"}}
         onClick={handleNext}>Next</button>
       </div>
-    </div>
+    </div>)
+    }
+
+    
+    </React.Fragment>
   )
 }
 
 export default App
 
-// adding another piece of state - next lecture
+// Vanilla JS Implementation - next lecture 
